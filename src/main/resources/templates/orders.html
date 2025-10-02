@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Pedidos</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-4">
+<h1 class="mb-4">Gestión de Pedidos</h1>
+
+<!-- Formulario para crear pedido -->
+<form id="orderForm" class="mb-4">
+    <div class="mb-3">
+        <label for="orderId" class="form-label">Id</label>
+        <input type="text" class="form-control" id="orderId" required>
+    </div>
+    <div class="mb-3">
+        <label for="customer" class="form-label">Cliente</label>
+        <input type="text" class="form-control" id="customer" required>
+    </div>
+    <div class="mb-3">
+        <label for="perfume" class="form-label">Perfume</label>
+        <input type="text" class="form-control" id="perfume" required>
+    </div>
+    <div class="mb-3">
+        <label for="quantity" class="form-label">Cantidad</label>
+        <input type="number" class="form-control" id="quantity" required>
+    </div>
+    <div class="mb-3">
+        <label for="total" class="form-label">Total</label>
+        <input type="number" step="0.01" class="form-control" id="total" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar Pedido</button>
+</form>
+
+<!-- Tabla de pedidos -->
+<h2>Pedidos Registrados</h2>
+<table class="table table-bordered table-striped" id="ordersTable">
+    <thead class="table-dark">
+    <tr>
+        <th>ID</th>
+        <th>Cliente</th>
+        <th>Perfume</th>
+        <th>Cantidad</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Los pedidos se cargan dinámicamente -->
+    </tbody>
+</table>
+
+<script>
+    async function loadOrders() {
+        const response = await fetch("/api/orders/results");
+        if (response.ok) {
+            const orders = await response.json();
+            const tbody = document.querySelector("#ordersTable tbody");
+            tbody.innerHTML = ""; // limpiar tabla
+
+            orders.forEach(order => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${order.orderId}</td>
+                    <td>${order.customer}</td>
+                    <td>${order.perfume}</td>
+                    <td>${order.quantity}</td>
+                    <td>$${order.total.toFixed(2)}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+    }
+
+    // Enviar pedido
+    document.getElementById("orderForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const order = {
+            orderId: document.getElementById("orderId").value,
+            customer: document.getElementById("customer").value,
+            perfume: document.getElementById("perfume").value,
+            quantity: parseInt(document.getElementById("quantity").value),
+            total: parseFloat(document.getElementById("total").value)
+        };
+
+        const response = await fetch("/api/orders/send", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(order)
+        });
+
+        if (response.ok) {
+            alert("✅ Pedido enviado correctamente");
+            document.getElementById("orderForm").reset();
+            await loadOrders(); // refrescar tabla
+        } else {
+            alert("❌ Error al enviar el pedido");
+        }
+    });
+
+    // cargar pedidos al abrir la página
+    loadOrders();
+</script>
+</body>
+</html>
