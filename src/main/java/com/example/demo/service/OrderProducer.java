@@ -6,16 +6,19 @@ import org.springframework.stereotype.Service; // Marca esta clase como un compo
 
 // Declara la clase como un componente de servicio de Spring
 @Service
-public class OrderProducer {
-
+    // Instancia de RabbitTemplate para enviar mensajes a RabbitMQ
     private final RabbitTemplate rabbitTemplate;
 
+    // Inyección del RabbitTemplate mediante el constructor
     public OrderProducer(RabbitTemplate rabbitTemplate) {
-        this.rabbitTemplate = rabbitTemplate;
+        this.rabbitTemplate = rabbitTemplate; // Inicializa el RabbitTemplate
     }
 
+    // Método para enviar un pedido a la cola de pedidos
     public void sendOrder(Order order) {
+        // Envía el pedido a la cola de pedidos configurada usando RabbitTemplate
         rabbitTemplate.convertAndSend(RabbitConfig.ORDERS_QUEUE, order);
-        System.out.println("📤 Pedido enviado a RabbitMQ: " + order);
+        // Imprime en consola la confirmación de que el pedido fue enviado
+        System.out.println("Pedido enviado a RabbitMQ: " + order);
     }
 }
