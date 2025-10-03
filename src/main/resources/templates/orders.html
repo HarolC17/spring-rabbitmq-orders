@@ -72,13 +72,21 @@
 </table>
 
 <script>
+<!-- Sección de JavaScript para la lógica del cliente -->
+<script>
+    // Función asíncrona para cargar los pedidos desde el servidor
     async function loadOrders() {
+        // Realiza una solicitud GET a la API para obtener los pedidos
         const response = await fetch("/api/orders/results");
         if (response.ok) {
+            // Si la respuesta es exitosa, convierte los datos a JSON
             const orders = await response.json();
+            // Selecciona el cuerpo de la tabla
             const tbody = document.querySelector("#ordersTable tbody");
-            tbody.innerHTML = ""; // limpiar tabla
+            // Limpia el contenido previo de la tabla
+            tbody.innerHTML = "";
 
+            // Itera sobre los pedidos y crea filas para la tabla
             orders.forEach(order => {
                 const row = document.createElement("tr");
                 row.innerHTML = `
@@ -88,15 +96,18 @@
                     <td>${order.quantity}</td>
                     <td>$${order.total.toFixed(2)}</td>
                 `;
+                // Agrega la fila al cuerpo de la tabla
                 tbody.appendChild(row);
             });
         }
     }
 
-    // Enviar pedido
+    // Evento para manejar el envío del formulario
     document.getElementById("orderForm").addEventListener("submit", async function (e) {
+        // Previene el comportamiento por defecto del formulario
         e.preventDefault();
 
+        // Crea un objeto con los datos del formulario
         const order = {
             orderId: document.getElementById("orderId").value,
             customer: document.getElementById("customer").value,
@@ -105,22 +116,28 @@
             total: parseFloat(document.getElementById("total").value)
         };
 
+        // Realiza una solicitud POST para enviar el pedido al servidor
         const response = await fetch("/api/orders/send", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(order)
         });
 
+        // Verifica si la solicitud fue exitosa
         if (response.ok) {
-            alert("✅ Pedido enviado correctamente");
+            // Muestra una alerta de éxito
+            alert("Pedido enviado correctamente");
+            // Resetea el formulario
             document.getElementById("orderForm").reset();
-            await loadOrders(); // refrescar tabla
+            // Refresca la tabla de pedidos
+            await loadOrders();
         } else {
-            alert("❌ Error al enviar el pedido");
+            // Muestra una alerta de error
+            alert("Error al enviar el pedido");
         }
     });
 
-    // cargar pedidos al abrir la página
+    // Carga los pedidos al abrir la página
     loadOrders();
 </script>
 </body>
