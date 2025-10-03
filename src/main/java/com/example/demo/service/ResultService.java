@@ -13,15 +13,21 @@ import java.util.List; // Interfaz para listas
 @Service
 public class ResultService {
 
+    // Lista para almacenar los pedidos procesados
     private final List<Order> processedOrders = new ArrayList<>();
 
+    // Método para escuchar mensajes de la cola de resultados
     @RabbitListener(queues = RabbitConfig.RESULTS_QUEUE)
     public void receiveProcessedOrder(Order order) {
-        System.out.println("Pedido procesado recibido en resultsQueue: " + order);
+        // Imprime en consola la confirmación de que se recibió un pedido procesado
+        System.out.println("📥 Pedido procesado recibido en resultsQueue: " + order);
+        // Agrega el pedido recibido a la lista de pedidos procesados
         processedOrders.add(order);
     }
 
+    // Método para obtener la lista de pedidos procesados
     public List<Order> getProcessedOrders() {
+        // Devuelve la lista de pedidos procesados
         return processedOrders;
     }
 }
