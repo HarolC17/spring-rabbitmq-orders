@@ -16,7 +16,7 @@ public class ResultService {
     // Lista para almacenar los pedidos procesados
     private final List<Order> processedOrders = new ArrayList<>();
 
-    // Método para escuchar mensajes de la cola de resultados
+    // Metodo para escuchar mensajes de la cola de resultados
     @RabbitListener(queues = RabbitConfig.RESULTS_QUEUE)
     public void receiveProcessedOrder(Order order) {
         // Imprime en consola la confirmación de que se recibió un pedido procesado
@@ -25,7 +25,7 @@ public class ResultService {
         processedOrders.add(order);
     }
 
-    // Método para obtener la lista de pedidos procesados
+    // Metodo para obtener la lista de pedidos procesados
     public List<Order> getProcessedOrders() {
         // Devuelve la lista de pedidos procesados
         return processedOrders;
