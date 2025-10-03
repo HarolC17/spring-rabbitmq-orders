@@ -12,12 +12,14 @@ import org.springframework.stereotype.Service; // Marca esta clase como un compo
 @Service
 public class OrderConsumer {
 
+    // Instancia de RabbitTemplate para enviar mensajes a RabbitMQ
     private final RabbitTemplate rabbitTemplate;
 
+    // Inyección del RabbitTemplate mediante el constructor
     public OrderConsumer(RabbitTemplate rabbitTemplate) {
-        this.rabbitTemplate = rabbitTemplate;
+        this.rabbitTemplate = rabbitTemplate; // Inicializa el RabbitTemplate
     }
-
+    
     @RabbitListener(queues = RabbitConfig.ORDERS_QUEUE)
     public void receiveOrder(Order order) {
         System.out.println("✅ Pedido recibido: " + order);
