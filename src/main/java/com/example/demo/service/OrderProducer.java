@@ -1,10 +1,10 @@
-package com.example.demo.service;
+// Importación de dependencias necesarias
+import com.example.demo.config.RabbitConfig; // Clase de configuración para RabbitMQ
+import com.example.demo.model.Order; // Clase del modelo Order
+import org.springframework.amqp.rabbit.core.RabbitTemplate; // Plantilla de RabbitMQ para enviar mensajes
+import org.springframework.stereotype.Service; // Marca esta clase como un componente de servicio de Spring
 
-import com.example.demo.config.RabbitConfig;
-import com.example.demo.model.Order;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.stereotype.Service;
-
+// Declara la clase como un componente de servicio de Spring
 @Service
 public class OrderProducer {
 
