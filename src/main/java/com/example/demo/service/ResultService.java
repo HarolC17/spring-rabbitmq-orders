@@ -1,13 +1,15 @@
+// Declaración del paquete para la capa de servicio
 package com.example.demo.service;
 
-import com.example.demo.config.RabbitConfig;
-import com.example.demo.model.Order;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.stereotype.Service;
+// Importación de dependencias necesarias
+import com.example.demo.config.RabbitConfig; // Clase de configuración para RabbitMQ
+import com.example.demo.model.Order; // Clase del modelo Order
+import org.springframework.amqp.rabbit.annotation.RabbitListener; // Anotación para escuchar mensajes de RabbitMQ
+import org.springframework.stereotype.Service; // Marca esta clase como un componente de servicio de Spring
+import java.util.ArrayList; // Clase para manejar listas dinámicas
+import java.util.List; // Interfaz para listas
 
-import java.util.ArrayList;
-import java.util.List;
-
+// Declara la clase como un componente de servicio de Spring
 @Service
 public class ResultService {
 
@@ -15,7 +17,7 @@ public class ResultService {
 
     @RabbitListener(queues = RabbitConfig.RESULTS_QUEUE)
     public void receiveProcessedOrder(Order order) {
-        System.out.println("📥 Pedido procesado recibido en resultsQueue: " + order);
+        System.out.println("Pedido procesado recibido en resultsQueue: " + order);
         processedOrders.add(order);
     }
 
