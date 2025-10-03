@@ -1,42 +1,63 @@
 <!DOCTYPE html>
+<!-- Declaración del tipo de documento HTML5 -->
 <html xmlns:th="http://www.thymeleaf.org">
+<!-- Definición del elemento raíz HTML con soporte para Thymeleaf -->
 <head>
+    <!-- Configuración del conjunto de caracteres UTF-8 para soportar caracteres especiales -->
     <meta charset="UTF-8">
+    <!-- Título de la página que se mostrará en la pestaña del navegador -->
     <title>Gestión de Pedidos</title>
+    <!-- Inclusión de la biblioteca CSS de Bootstrap para estilos predefinidos -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body class="container mt-4">
+<!-- Cuerpo de la página con clase de Bootstrap para un contenedor y margen superior -->
 <h1 class="mb-4">Gestión de Pedidos</h1>
+<!-- Encabezado principal con margen inferior -->
 
-<!-- Formulario para crear pedido -->
+<!-- Formulario para crear un nuevo pedido -->
 <form id="orderForm" class="mb-4">
+    <!-- Campo para el ID del pedido -->
     <div class="mb-3">
         <label for="orderId" class="form-label">Id</label>
         <input type="text" class="form-control" id="orderId" required>
+        <!-- Campo de texto para el ID, obligatorio -->
     </div>
+    <!-- Campo para el nombre del cliente -->
     <div class="mb-3">
         <label for="customer" class="form-label">Cliente</label>
         <input type="text" class="form-control" id="customer" required>
+        <!-- Campo de texto para el cliente, obligatorio -->
     </div>
+    <!-- Campo para el nombre del perfume -->
     <div class="mb-3">
         <label for="perfume" class="form-label">Perfume</label>
         <input type="text" class="form-control" id="perfume" required>
+        <!-- Campo de texto para el perfume, obligatorio -->
     </div>
+    <!-- Campo para la cantidad del pedido -->
     <div class="mb-3">
         <label for="quantity" class="form-label">Cantidad</label>
         <input type="number" class="form-control" id="quantity" required>
+        <!-- Campo numérico para la cantidad, obligatorio -->
     </div>
+    <!-- Campo para el total del pedido -->
     <div class="mb-3">
         <label for="total" class="form-label">Total</label>
         <input type="number" step="0.01" class="form-control" id="total" required>
+        <!-- Campo numérico con dos decimales para el total, obligatorio -->
     </div>
+    <!-- Botón para enviar el formulario -->
     <button type="submit" class="btn btn-primary">Enviar Pedido</button>
 </form>
 
-<!-- Tabla de pedidos -->
+<!-- Sección para mostrar la tabla de pedidos -->
 <h2>Pedidos Registrados</h2>
+<!-- Encabezado para la tabla -->
 <table class="table table-bordered table-striped" id="ordersTable">
+    <!-- Tabla con estilos de Bootstrap para bordes y rayas -->
     <thead class="table-dark">
+    <!-- Encabezado de la tabla con fondo oscuro -->
     <tr>
         <th>ID</th>
         <th>Cliente</th>
@@ -46,7 +67,7 @@
     </tr>
     </thead>
     <tbody>
-    <!-- Los pedidos se cargan dinámicamente -->
+    <!-- Cuerpo de la tabla donde se cargarán los pedidos dinámicamente -->
     </tbody>
 </table>
 
