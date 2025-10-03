@@ -8,6 +8,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener; // Anotación 
 import org.springframework.amqp.rabbit.core.RabbitTemplate; // Plantilla de RabbitMQ para enviar mensajes
 import org.springframework.stereotype.Service; // Marca esta clase como un componente de servicio de Spring
 
+// Declara la clase como un componente de servicio de Spring
 @Service
 public class OrderConsumer {
 
