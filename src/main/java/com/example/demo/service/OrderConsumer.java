@@ -20,15 +20,15 @@ public class OrderConsumer {
         this.rabbitTemplate = rabbitTemplate; // Inicializa el RabbitTemplate
     }
     
+    // Metodo para escuchar mensajes de la cola de pedidos configurada
     @RabbitListener(queues = RabbitConfig.ORDERS_QUEUE)
     public void receiveOrder(Order order) {
-        System.out.println("✅ Pedido recibido: " + order);
+        // Imprime en consola la confirmación de que se recibió el pedido
+        System.out.println("Pedido recibido: " + order);
 
-        // Simulación de procesamiento
-        order.setTotal(order.getQuantity() * 120.0);
-
-        // Reenviamos a resultsQueue
+        // Reenvía el pedido a la cola de resultados usando RabbitTemplate
         rabbitTemplate.convertAndSend(RabbitConfig.RESULTS_QUEUE, order);
-        System.out.println("📤 Pedido procesado enviado a resultsQueue: " + order);
+        // Imprime en consola la confirmación de que el pedido fue enviado a la cola de resultados
+        System.out.println("Pedido procesado enviado a resultsQueue: " + order);
     }
 }
