@@ -64,5 +64,6 @@ public class Order implements Serializable {
                 ", quantity=" + quantity +
                 ", total=" + total +
                 '}';
-    }
+    }//Este método devuelve una cadena de texto que representa el objeto Order y sus valores. 
+    //Es muy útil para la depuración y para imprimir información de la orden de forma legible en la consola
 }
