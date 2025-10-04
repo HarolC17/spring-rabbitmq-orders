@@ -19,7 +19,7 @@ public class Order implements Serializable {
         this.quantity = quantity;
         this.total = total;
     }
-
+//Devuelven el valor del atributo correspondiente, permitiendo que otras clases lo lean.
     public Integer getOrderId() {
         return orderId;
     }
