@@ -19,7 +19,7 @@ public class OrderController {
     public OrderController(OrderProducer orderProducer, ResultService resultService) {
         this.orderProducer = orderProducer;
         this.resultService = resultService;
-    }
+    }//ada método de este controlador devuelve directamente una respuesta HTTP en formato JSON, sin pasar por una vista HTML.
 
     /**
      * Enviar un pedido a RabbitMQ
@@ -30,9 +30,8 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.CREATED).body(order);
     }
 
-    /**
-     * Obtener todos los pedidos procesados
-     */
+
+     //Obtener todos los pedidos procesados
     @GetMapping("/results")
     public ResponseEntity<List<Order>> getProcessedOrders() {
         List<Order> orders = resultService.getProcessedOrders();
