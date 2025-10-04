@@ -1,15 +1,20 @@
+// Declaración del paquete para la capa de controlador
 package com.example.demo.controller;
-//Declara el paquete donde se encuentra la clase. El nombre controller es una convención común en aplicaciones 
-//Spring para agrupar las clases que manejan las solicitudes HTTP.
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 
+// Importación de dependencias necesarias
+import org.springframework.stereotype.Controller; // Anotación para marcar la clase como controlador de Spring
+import org.springframework.web.bind.annotation.GetMapping; // Anotación para manejar solicitudes HTTP GET
+
+// Declara la clase como un controlador de Spring para manejar vistas
 @Controller
 public class ViewController {
 
+    /**
+     * Endpoint para mostrar la página de gestión de pedidos
+     */
     @GetMapping("/orders")
     public String ordersPage() {
-        return "orders"; // busca orders.html en /templates
+        // Devuelve el nombre del archivo HTML (sin la extensión) ubicado en /templates
+        return "orders"; // Busca orders.html en la carpeta /templates
     }
 }
-
