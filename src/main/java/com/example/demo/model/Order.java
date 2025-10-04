@@ -3,7 +3,7 @@ package com.example.demo.model;
 import java.io.Serializable;
 
 public class Order implements Serializable {
-//ara que el objeto pueda ser enviado a través de una red o serializado en JSON, como se hace en la configuración de RabbitMQ
+//para que el objeto pueda ser enviado a través de una red o serializado en JSON, como se hace en la configuración de RabbitMQ
     private Integer orderId;
     private String customer;
     private String perfume;
@@ -11,7 +11,7 @@ public class Order implements Serializable {
     private Double total;
 
     public Order() {}
-
+//No recibe argumentos y es necesario para que muchas librerías y frameworks (como Spring) puedan crear una instancia de la clase antes de cargarle los datos.
     public Order(Integer orderId, String customer, String perfume, Integer quantity, Double total) {
         this.orderId = orderId;
         this.customer = customer;
