@@ -1,5 +1,5 @@
 package com.example.demo.controller;
-
+//Spring para agrupar las clases que manejan las solicitudes HTTP.
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
