@@ -19,7 +19,7 @@ public class OrderController {
     public OrderController(OrderProducer orderProducer, ResultService resultService) {
         this.orderProducer = orderProducer;
         this.resultService = resultService;
-    }//ada método de este controlador devuelve directamente una respuesta HTTP en formato JSON, sin pasar por una vista HTML.
+    }//cada método de este controlador devuelve directamente una respuesta HTTP en formato JSON, sin pasar por una vista HTML.
 
     /**
      * Enviar un pedido a RabbitMQ
