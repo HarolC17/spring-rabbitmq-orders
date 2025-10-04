@@ -3,7 +3,7 @@ package com.example.demo.model;
 import java.io.Serializable;
 
 public class Order implements Serializable {
-
+//ara que el objeto pueda ser enviado a través de una red o serializado en JSON, como se hace en la configuración de RabbitMQ
     private Integer orderId;
     private String customer;
     private String perfume;
