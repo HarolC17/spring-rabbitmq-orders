@@ -27,13 +27,13 @@ public class RabbitConfig {
     @Bean
     public Jackson2JsonMessageConverter messageConverter() {
         return new Jackson2JsonMessageConverter();
-    }//Convierte objetos de Java a formato JSON para ser enviados a la cola y viceversa
+    }//Convierte objetos de Java a formato JSON para ser enviados a la cola y viceversa,puedan comunicarse fácilmente con JSON.
 
     @Bean
     public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory,
                                          Jackson2JsonMessageConverter messageConverter) {
         RabbitTemplate template = new RabbitTemplate(connectionFactory);
-        template.setMessageConverter(messageConverter);
+        template.setMessageConverter(messageConverter);//se utiliza para enviar y recibir mensajes en la aplicación, y nos aseguremos que los mensajes se manejen en formato JSON
         return template;
     }
 }
