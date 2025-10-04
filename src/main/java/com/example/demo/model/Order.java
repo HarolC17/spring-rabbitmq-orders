@@ -54,7 +54,7 @@ public class Order implements Serializable {
     public void setTotal(Double total) {
         this.total = total;
     }
-
+//Estos son los métodos estándar para interactuar con los campos privados de la clase.
     @Override
     public String toString() {
         return "Order{" +
